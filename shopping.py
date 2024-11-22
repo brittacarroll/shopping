@@ -155,16 +155,16 @@ def evaluate(labels, predictions):
 
     for revenue, hypothesis in zip(labels, predictions):
         if revenue == 0 and revenue == hypothesis:
-            correct_positive += 1
-            actual_positive_total += 1
-        elif revenue == 0:
-            actual_positive_total += 1
-        
-        if revenue == 1 and revenue == hypothesis:
             correct_negative += 1
             actual_negative_total += 1
-        elif revenue == 1:
+        elif revenue == 0:
             actual_negative_total += 1
+
+        if revenue == 1 and revenue == hypothesis:
+            correct_positive += 1
+            actual_positive_total += 1
+        elif revenue == 1:
+            actual_positive_total += 1
 
     sensitivity = float(correct_positive/actual_positive_total)
     specificity = float(correct_negative/actual_negative_total)
